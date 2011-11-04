@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkSkin 
+	minHeight="22"
+	minWidth="22"
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:mx="library://ns.adobe.com/flex/halo"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	>
+	
+	<!--
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//    Metadata
+	//
+	////////////////////////////////////////////////////////////////////////////
+	-->
+	
+	<fx:Metadata>
+		<![CDATA[
+		
+		[HostComponent("co.pointred.fx.comp.core.dataGrid.IconButton")]
+		
+		]]>
+	</fx:Metadata>
+	
+	
+	<!--
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//    States
+	//
+	////////////////////////////////////////////////////////////////////////////
+	-->
+	
+	<s:states>
+		<s:State 
+			name="up"
+			/>
+		<s:State 
+			name="over"
+			/>
+		<s:State 
+			name="down"
+			/>
+		<s:State 
+			name="disabled"
+			/>
+	</s:states>
+	
+	<!--
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//    Graphics
+	//
+	////////////////////////////////////////////////////////////////////////////
+	-->
+	
+	<s:Rect 
+		bottom="0"
+		left="0"
+		right="0"
+		top="0"
+		alpha="0.5"
+		alpha.over="0.8"
+		radiusX="0"
+		radiusY="0"
+		>
+		<s:fill>
+			<s:SolidColor	color="0x000000"/>
+		</s:fill>
+	</s:Rect>
+	
+	<!--
+	////////////////////////////////////////////////////////////////////////////
+	//
+	//    Label & Icons
+	//
+	////////////////////////////////////////////////////////////////////////////
+	-->
+	
+	<s:Group>
+		<s:layout>
+			<s:HorizontalLayout 
+				paddingBottom="4"
+				paddingLeft="4"
+				paddingRight="4"
+				paddingTop="4"
+				gap="4"
+				verticalAlign="middle"
+				/>
+		</s:layout>
+		<s:BitmapImage 
+			id="iconElement"
+			/>
+		<!--<s:Group height="100%">
+			<s:SimpleText 
+				id="labelElement"
+				color="0xEFEFEF"
+				fontWeight="bold"
+				verticalCenter="1"
+				/>-->
+		</s:Group>
+		
+	<!--</s:Group>-->
+</s:SparkSkin>

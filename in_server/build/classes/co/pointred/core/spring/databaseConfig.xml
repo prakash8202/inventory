@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+"http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- Data source bean -->
+<beans>
+	<bean id="dataSourcePrimary" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/inventory" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+		<property name="initialSize" value="5" />
+		<property name="maxActive" value="30" />
+		<property name="maxIdle" value="20" />
+		<property name="maxWait" value="60000" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="testWhileIdle" value="true" />
+	</bean>
+
+	<!-- SqlMap setup for iBATIS Database Layer -->
+	<bean id="sqlMapClientPrimary" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="co/pointred/core/spring/SqlMapConfig.xml" />
+		<property name="dataSource" ref="dataSourcePrimary" />
+		<property name="useTransactionAwareDataSource" value="true" />
+		<property name="transactionConfigClass" value="com.ibatis.sqlmap.engine.transaction.jdbc.JdbcTransactionConfig" />
+	</bean>
+
+	<bean id="databasePrimary" class="co.pointred.core.database.PrimaryDatabase">
+		<property name="sqlMapClient" ref="sqlMapClientPrimary" />
+	</bean>
+
+</beans>

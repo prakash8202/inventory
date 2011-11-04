@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>productmgmt.grid</uid>
+	<title>Product Management</title>
+	<type>skinnablecontainer</type>
+	<width>50</width>
+	<height>50</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='AddActivityFrm' type='' label='' layout='form' tabgroup='' colgroup=''>
+			<icomp type='combobox'>
+				<attrname>product_type_id</attrname>
+				<label>Product Type</label>
+				<width>150</width>
+				<tooltip>Select Product Type</tooltip>
+				<required>true</required>
+			</icomp>
+		</components>
+	</pruicntnr>
+	<pruicntnr id='productGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='productMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>productList</attrname>
+				<label>product</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>product_pid</colname>
+					<attrname>product_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Product Name</colname>
+					<attrname>product_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Product Rate (INR)</colname>
+					<attrname>rate</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Available Stock</colname>
+					<attrname>available</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Start Date</colname>
+					<attrname>start_date</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>start_date_val</colname>
+					<attrname>start_date_val</attrname>
+					<hide>true</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

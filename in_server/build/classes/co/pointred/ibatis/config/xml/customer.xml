@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="customer">
+
+	<parameterMap id="pMapCustomer" class="java.util.HashMap">
+		<parameter property="customer_pid" jdbcType="BIGINT" />
+		<parameter property="customer_name" jdbcType="STRING" />
+		<parameter property="customer_addr" jdbcType="STRING" />
+		<parameter property="customer_number" jdbcType="STRING" />
+	</parameterMap>
+	
+	<insert id="CUSTOMER.CREATE" parameterMap="pMapCustomer">
+		INSERT INTO customer (customer_pid,customer_name,customer_addr,customer_number) values (?,?,?,?)
+	</insert>
+	
+	<insert id="CUSTOMER.CREATE_OBJECT" parameterClass="Customer">
+		INSERT INTO customer (customer_pid,customer_name,customer_addr,customer_number) values(#customer_pid#,#customer_name#,#customer_addr#,#customer_number#)
+	</insert>
+	
+	<select id="CUSTOMER.SELECT.ALL" resultClass="Customer">
+		SELECT * FROM customer
+	</select>
+	
+	<select id="CUSTOMER.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="Customer">
+		SELECT * FROM customer WHERE customer_pid = #customer_pid#
+	</select>
+	
+	<select id="CUSTOMER.SELECT.BY_NAME" parameterClass="string" resultClass="Customer">
+		SELECT * FROM customer WHERE customer_name = #customer_name#
+	</select>
+	
+	<delete id="CUSTOMER.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM customer WHERE customer_pid = #customer_pid#
+	</delete>
+	
+	<update id="CUSTOMER.UPDATE" parameterClass="Customer">
+		UPDATE customer SET customer_name=#customer_name#,customer_addr=#customer_addr#,customer_number=#customer_number# WHERE customer_pid = #customer_pid#
+	</update>
+</sqlMap>

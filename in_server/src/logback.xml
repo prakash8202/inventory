@@ -1,0 +1,49 @@
+<configuration scan="true">
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%date %-5level %logger{50} - %msg %n</pattern>
+    </encoder>
+  </appender>
+  
+  <timestamp key="dateVal" datePattern="yyyy-MM-dd"/>
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>C:\inventorylogs\inventoryLog-${dateVal}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <fileNamePattern>C:\inventorylogs\inventoryLog-${dateVal}.%i.log.zip</fileNamePattern>
+      <minIndex>1</minIndex>
+      <maxIndex>12</maxIndex>
+    </rollingPolicy>
+
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>10MB</maxFileSize>
+    </triggeringPolicy>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%date %-5level %logger{50} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  
+  <!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/home/prakash/test-${dateVal}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>/home/prakash/test-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        or whenever the file size reaches 5KB
+        <maxFileSize>5KB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+      keep 10 days' worth of history
+      <maxHistory>10</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+  </appender> -->
+  
+  <root level="DEBUG">
+   <!--  <appender-ref ref="STDOUT" />  -->
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>producttype.create</uid>
+	<title>Add/Modify producttype</title>
+	<type>skinnablecontainer</type>
+	<width>20</width>
+	<height>12</height>
+	<layout>vertical</layout>
+
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='ProducttypeForm' type='' label='' layout='form' tabgroup='' colgroup=''>
+			<icomp type='nullcomp'>
+				<attrname>product_type_pid</attrname>
+				<label>PID</label>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>product_type</attrname>
+				<label>Product Type</label>
+				<required>true</required>
+				<tooltip>Product Type</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+		<components id='CategoryCrudBtns' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='button'>
+				<attrname>save_btn</attrname>
+				<label>Save</label>
+				<tooltip>Save</tooltip>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

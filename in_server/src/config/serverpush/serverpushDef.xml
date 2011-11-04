@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<mapping>
+	<class name="co.pointred.fx.dataobjects.ServerPushRequestObject">
+		<map-to xml="serverPush" />
+
+		<field name="userName" type="string">
+			<bind-xml name="userName" node="element" />
+		</field>
+
+		<field name="requestCtx" type="string">
+			<bind-xml name="requestCtx" node="element" />
+		</field>
+
+	</class>
+
+</mapping>

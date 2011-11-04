@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container:PrModule xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx"
+		   xmlns:container="co.pointred.fx.comp.container.*"
+		   layout="absolute" width="100%" height="100%"  creationComplete="onCreationComplete(event)">
+	<fx:Script>
+		<![CDATA[
+			import co.inventory.utils.MenuConstants;
+			import co.inventory.utils.SharedConstants;
+			import co.pointred.fx.comp.core.PrAlert;
+			
+			import mx.collections.XMLListCollection;
+			import mx.controls.Image;
+			import mx.controls.MenuBar;
+			import mx.controls.menuClasses.MenuBarItem;
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			import mx.events.MenuEvent;
+			
+			import spark.components.HGroup;
+			import spark.components.Label;
+			import spark.components.VGroup;
+
+			
+			private var menuBarCollection:XMLListCollection;
+			private var menuBar:MenuBar;
+			
+			public var contentCntr:VGroup;
+			
+			[Embed(source="assets/tree/down.png")]
+			public const subMenu:Class;
+			[Embed(source="assets/misc/logo.png")]
+			public const logoIcon:Class;
+			
+			private var selectedMenuObject:Object;
+
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				//Overall main container
+				var mainCntr:VGroup = new VGroup;
+				mainCntr.percentHeight = 100;
+				mainCntr.percentWidth = 100;
+				mainCntr.paddingBottom = 5;
+				mainCntr.paddingTop = 5;
+				mainCntr.paddingLeft = 5;
+				mainCntr.paddingRight = 5;
+				
+				//Container at top 
+				var topCntr:HGroup = new HGroup;
+				topCntr.percentWidth = 100;
+				topCntr.height = 50;
+				
+				//Container holding logo
+				var logoCntr:HGroup = new HGroup;
+				logoCntr.percentWidth = 10;
+				logoCntr.percentHeight = 100;
+				
+				var logo:Image = new Image;
+				logo.source = logoIcon;
+				logo.height = 100;
+				logoCntr.addElement(logo);
+				
+				//Container holding menu bar
+				var menuCntr:HGroup = new HGroup;
+				menuCntr.percentWidth = 80;
+				menuCntr.height = 30;
+				
+				topCntr.addElement(logoCntr);
+				topCntr.addElement(menuCntr);
+				
+				//Container holding the main contents
+				contentCntr = new VGroup;
+				contentCntr.percentWidth = 100;
+				contentCntr.percentHeight = 98;
+				
+				mainCntr.addElement(topCntr);
+				mainCntr.addElement(contentCntr);
+				
+				this.addElement(mainCntr);
+				
+				//Menu bar creation based on user role
+				var menuXml:XML = new XML(MenuConstants.getInstance().MAIN_MENU);
+				var menuList:XMLList = menuXml.menuitem; 
+				menuBarCollection = new XMLListCollection(menuList);
+				
+				menuBar = new MenuBar;
+				menuBar.dataProvider = menuBarCollection;
+				menuBar.labelField = "@label";
+				menuBar.iconField = "@icon";
+				menuBar.percentHeight = 100;
+				menuBar.addEventListener(FlexEvent.CREATION_COMPLETE, onMenuCreationComplete);
+				menuBar.addEventListener(MenuEvent.ITEM_CLICK, onMenuItemClick);
+				menuBar.addEventListener(MouseEvent.CLICK, onMainMenuItemClick);
+				
+				menuCntr.addElement(menuBar);
+				
+				
+				SharedConstants.content_container = contentCntr;
+			}
+			
+			private function onMenuCreationComplete(event:FlexEvent):void
+			{
+				var firstItem:MenuBarItem = menuBar.menuBarItems[0] as MenuBarItem;
+				
+				selectedMenuObject = firstItem.data;
+				
+				updateView();
+			}
+			
+			private function onMenuItemClick(event:MenuEvent):void
+			{
+				selectedMenuObject = event.item;
+				updateView();
+			}
+			
+			private function onMainMenuItemClick(event:MouseEvent):void
+			{
+				if(event.target is MenuBarItem)
+				{
+					var indexStr:String = event.target.data.@index;
+					if(indexStr != null && indexStr != "")
+					{
+						var index:int = parseInt(indexStr);
+						
+						var menuItem:MenuBarItem = menuBar.menuBarItems[index] as MenuBarItem;
+						selectedMenuObject = menuItem.data;
+						
+						updateView();
+					}
+				}
+			}
+			
+			
+			private function updateView():void
+			{
+				var context:String = selectedMenuObject.@context;
+				var className:String = MenuConstants.getInstance().getHashOfCntxtClass().getValue(context);
+				
+				if(className != null)
+				{
+					var qualifiedClassName:String = getQualifiedClassName(MenuConstants.getInstance().getHashOfCntxtClass().getValue(context));
+					var cls:Class = getDefinitionByName(qualifiedClassName) as Class;
+					
+					var instance:UIComponent = new cls();
+					
+				}else{
+					PrAlert.show("No implementation available",PrAlert.ERROR_MESSAGE);
+				}
+				
+			}
+
+
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+</container:PrModule>

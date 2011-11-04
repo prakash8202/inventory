@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>homesummary.grid</uid>
+	<title>homesummary</title>
+	<type>skinnablecontainer</type>
+	<width>100</width>
+	<height>100</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='productsummaryGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='productsummaryGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>productsummaryList</attrname>
+				<label>productsummary</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>true</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>Product Name</colname>
+					<attrname>product_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Product Rate (INR)</colname>
+					<attrname>rate</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Items Purchased</colname>
+					<attrname>purchased</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Purchase Amount (INR)</colname>
+					<attrname>cost_price</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Items Sold</colname>
+					<attrname>sold</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Sales Amount (INR)</colname>
+					<attrname>sold_price</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Profit</colname>
+					<attrname>profit</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>In Stock</colname>
+					<attrname>available</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+	<pruicntnr id='expensesummaryGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='expensesummaryGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>expensesummaryList</attrname>
+				<label>expensesummary</label>
+				<dbType>0</dbType>
+				<width>30</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>true</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>Expense</colname>
+					<attrname>expense</attrname>
+					<colwidth>300</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Amount (INR)</colname>
+					<attrname>amount</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+		<components id='commonsummaryGrd' type='' label='' layout='form_full' tabgroup='' colgroup=''>
+			<icomp type='datefield'>
+				<attrname>from_date</attrname>
+				<label>From</label>
+				<tooltip>From Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>to_date</attrname>
+				<label>To</label>
+				<tooltip>To Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='button'>
+				<attrname>clear_btn</attrname>
+				<label>Clear</label>
+				<tooltip>Clear Date Filter</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='label'>
+				<attrname>total_purchase</attrname>
+				<label>Total Purchase Cost (INR)</label>
+				<labelbold>true</labelbold>
+			</icomp>
+			<icomp type='label'>
+				<attrname>total_sales</attrname>
+				<label>Total Sales Price (INR)</label>
+				<labelbold>true</labelbold>
+			</icomp>
+			<icomp type='label'>
+				<attrname>total_expense</attrname>
+				<label>Total Expense Cost (INR)</label>
+				<labelbold>true</labelbold>
+			</icomp>
+			<icomp type='label'>
+				<attrname>profit_loss</attrname>
+				<label>Profit / Loss (INR)</label>
+				<labelbold>true</labelbold>
+			</icomp>
+			<icomp type='label'>
+				<attrname>percentage</attrname>
+				<label>Profit / Loss Percentage</label>
+				<labelbold>true</labelbold>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

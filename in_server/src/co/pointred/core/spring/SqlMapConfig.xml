@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig
+PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<!-- TYPE ALIAS -->
+		<typeAlias alias="ProductType" type="co.pointred.ibatis.pojo.ProductType" />
+		<typeAlias alias="Customer" type="co.pointred.ibatis.pojo.Customer" />
+		<typeAlias alias="Expense" type="co.pointred.ibatis.pojo.Expense" />
+		<typeAlias alias="ExpenseType" type="co.pointred.ibatis.pojo.ExpenseType" />
+		<typeAlias alias="Product" type="co.pointred.ibatis.pojo.Product" />
+		<typeAlias alias="Purchase" type="co.pointred.ibatis.pojo.Purchase" />
+		<typeAlias alias="Sales" type="co.pointred.ibatis.pojo.Sales" />
+		<typeAlias alias="Vendor" type="co.pointred.ibatis.pojo.Vendor" />
+	<!--SQL MAP -->
+		<sqlMap resource="co/pointred/ibatis/config/xml/producttype.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/customer.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/expense.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/expensetype.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/product.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/purchase.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/sales.xml" />
+		<sqlMap resource="co/pointred/ibatis/config/xml/vendor.xml" />
+</sqlMapConfig>

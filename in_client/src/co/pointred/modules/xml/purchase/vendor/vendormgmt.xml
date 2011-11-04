@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>vendormgmt.grid</uid>
+	<title>Product Type Management</title>
+	<type>skinnablecontainer</type>
+	<width>70</width>
+	<height>70</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='vendorGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='vendorMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>vendorList</attrname>
+				<label>vendor</label>
+				<sql>SELECT vendor_pid, vendor_name,vendor_addr,vendor_number FROM vendor ORDER BY vendor_name</sql>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>vendor_pid</colname>
+					<attrname>vendor_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Vendor Name</colname>
+					<attrname>vendor_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Address</colname>
+					<attrname>vendor_addr</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Phone Number</colname>
+					<attrname>vendor_number</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

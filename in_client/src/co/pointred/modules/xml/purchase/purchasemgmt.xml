@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>purchasemgmt.grid</uid>
+	<title>purchase Management</title>
+	<type>skinnablecontainer</type>
+	<width>100</width>
+	<height>100</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='AddActivityFrm' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='combobox'>
+				<attrname>product_id</attrname>
+				<label>Product</label>
+				<width>150</width>
+				<tooltip>Select Product</tooltip>
+			</icomp>
+			<icomp type='combobox'>
+				<attrname>vendor_id</attrname>
+				<label>Vendor</label>
+				<width>150</width>
+				<tooltip>Select Vendor</tooltip>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>from_date</attrname>
+				<label>From</label>
+				<tooltip>From Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>to_date</attrname>
+				<label>To</label>
+				<tooltip>To Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='button'>
+				<attrname>clear_btn</attrname>
+				<label>Clear</label>
+				<tooltip>Clear Date Filter</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+	</pruicntnr>
+	<pruicntnr id='purchaseGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='purchaseMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>purchaseList</attrname>
+				<label>purchase</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>25</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>purchase_pid</colname>
+					<attrname>purchase_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>product_id</colname>
+					<attrname>product_id</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>vendor_id</colname>
+					<attrname>vendor_id</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Product Name</colname>
+					<attrname>product_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Product Type</colname>
+					<attrname>product_type</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Vendor</colname>
+					<attrname>vendor_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Purchase Date</colname>
+					<attrname>purchase_date</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Cost (INR)</colname>
+					<attrname>cost</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Quantity</colname>
+					<attrname>quantity</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>purchase_date_val</colname>
+					<attrname>purchase_date_val</attrname>
+					<hide>true</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

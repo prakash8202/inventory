@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>customermgmt.grid</uid>
+	<title>Product Type Management</title>
+	<type>skinnablecontainer</type>
+	<width>70</width>
+	<height>70</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='customerGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='customerMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>customerList</attrname>
+				<label>customer</label>
+				<sql>SELECT customer_pid, customer_name,customer_addr,customer_number FROM customer ORDER BY customer_name</sql>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>customer_pid</colname>
+					<attrname>customer_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Customer Name</colname>
+					<attrname>customer_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Address</colname>
+					<attrname>customer_addr</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Phone Number</colname>
+					<attrname>customer_number</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

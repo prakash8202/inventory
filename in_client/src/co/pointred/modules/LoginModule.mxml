@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container:PrModule xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx"
+		   creationComplete="loginModule_creationCompleteHandler(event)"
+		   xmlns:container="co.pointred.fx.comp.container.*"
+		   layout="absolute" width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import co.pointred.fx.comp.collection.HashMap;
+			import co.pointred.fx.comp.core.PrAlert;
+			import co.pointred.fx.comp.core.validation.custom.ValidationMgr;
+			import co.pointred.fx.comp.preloader.PrPreloader;
+			import co.pointred.fx.comp.singleton.TimeOutService;
+			import co.pointred.fx.comp.utils.FrameworkConstants;
+			import co.pointred.fx.dataobjects.PrComponent;
+			import co.pointred.fx.dataobjects.UserObject;
+			import co.pointred.fx.rpc.RemoteGateway;
+			import co.pointred.fx.util.ModuleMgr;
+			import mx.collections.ArrayCollection;
+			import mx.containers.Canvas;
+			import mx.containers.Form;
+			import mx.containers.FormItem;
+			import mx.controls.Alert;
+			import mx.controls.Image;
+			import mx.controls.Text;
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.remoting.RemoteObject;
+			import spark.components.Button;
+			import spark.components.HGroup;
+			import spark.components.Panel;
+			import spark.components.SkinnableContainer;
+			import spark.components.TextInput;
+			import spark.components.VGroup;
+			
+			private var container:VGroup;
+			private var userNameTextField:TextInput = new TextInput();
+			private var passwordTextField:TextInput = new TextInput();
+			
+			protected function loginModule_creationCompleteHandler(event:FlexEvent):void
+			{
+				createUi();
+				userNameTextField.text = "Admin";
+				passwordTextField.text = "Admin";
+			}
+			
+			private function createUi():void
+			{
+				var topContainer:VGroup = new VGroup();
+				topContainer.percentHeight = 40;
+				topContainer.percentWidth = 100;
+				topContainer.verticalAlign = "top";
+				topContainer.horizontalAlign = "center";
+				
+				var headerImg:Image = new Image();
+//				headerImg.source = ProjectAssets.headerImg;
+				topContainer.addElement(headerImg);
+				
+				var backCntr:SkinnableContainer = new SkinnableContainer;
+				backCntr.percentHeight = 100;
+				backCntr.percentWidth = 100;
+				backCntr.setStyle("backgroundColor","#F4F4F2");
+				backCntr.horizontalCenter = 0;
+				backCntr.verticalCenter = 0;
+				
+				container = new VGroup();
+				
+				container.horizontalAlign = "center";
+				container.verticalAlign = "middle"
+				container.percentHeight = 100;
+				container.percentWidth = 100;
+				
+				var formPanel:Panel = new Panel;
+				formPanel.setStyle("cornerRadius",4);
+				formPanel.title = "Login";
+				
+				var loginForm:Form = new Form();
+				var userName:FormItem = new FormItem();
+				userName.label = "User Name";
+				
+				//userNameTextField = new TextInput();
+				userNameTextField.text = "Admin";
+				userName.addElement(userNameTextField);
+				
+				var password:FormItem = new FormItem();
+				password.label = "Password";
+				
+				passwordTextField.displayAsPassword = true;
+				passwordTextField.text = "Admin";
+				password.addElement(passwordTextField);
+				
+				var button:FormItem = new FormItem();
+				
+				var loginButton:Button = new Button();
+				loginButton.label = "Login";
+				button.addElement(loginButton);
+				loginButton.addEventListener(MouseEvent.CLICK, validateForm);
+				
+				loginForm.addElement(userName);
+				loginForm.addElement(password);
+				loginForm.addElement(button);
+				
+				formPanel.addElement(loginForm);
+				
+				container.addElement(topContainer);
+				container.addElement(formPanel);
+				showLoginContext();
+				
+				var bottomContainer:VGroup = new VGroup();
+				bottomContainer.percentHeight = 30;
+				bottomContainer.percentWidth = 100;
+				bottomContainer.verticalAlign = "bottom";
+				bottomContainer.horizontalAlign = "center";
+				
+				
+				var footerImg:Image = new Image();
+//				footerImg.source = ProjectAssets.footerImg;
+				bottomContainer.addElement(footerImg);
+				container.addElement(bottomContainer);
+				
+				backCntr.addElement(container);
+				this.addElement(backCntr);
+				
+			}
+			
+			private function validateForm(evt:MouseEvent):void
+			{
+				PrPreloader.getInstance().showPreloader("Authenticating..");
+				
+				var validatorArrayComponents:Array = new Array();;
+				validatorArrayComponents.push(new PrComponent(userNameTextField,ValidationMgr.STRLEN_VALIDATION ,"text", "4",true));
+				validatorArrayComponents.push(new PrComponent(passwordTextField,ValidationMgr.STRLEN_VALIDATION,"text", "4",true));
+				
+				if(true == ValidationMgr.validateAll(validatorArrayComponents))
+				{
+					//call to Server
+					remoteCall();
+				} 
+				PrPreloader.getInstance().hidePreloader();
+			}
+			
+			private function replace(str:String,find:String,replace:String):String
+			{
+				var index:Number;
+				while(str.indexOf(find)!=-1)
+				{
+					index= str.indexOf(find);
+					str = str.substr(0,index) + replace + str.substr(index + find.length);
+				}
+				return str;
+			}
+			
+			private function showLoginContext():void
+			{
+				FlexGlobals.topLevelApplication.logonMsgLso =  SharedObject.getLocal("logonMsgLso");
+				FlexGlobals.topLevelApplication.logonTimeLso = SharedObject.getLocal("logonTimeLso");
+				var currentTime:Number = new Date().time;
+				var previousTime:Number = FlexGlobals.topLevelApplication.logonTimeLso.data.logonTimeLso;
+				var msgCanvas:Canvas = new Canvas();
+				msgCanvas.minWidth = 100;
+				var text:Text = new Text();
+				text.htmlText = "";
+				msgCanvas.addElement(text);
+				var hgrp:HGroup = new HGroup();
+				hgrp.addElement(msgCanvas);
+				container.addElement(hgrp);
+				var diff:Number = currentTime - previousTime;
+				if((FlexGlobals.topLevelApplication.logonMsgLso.size > 0) && (diff < 180000 ))
+				{
+					text.htmlText = "<b> <font color='#FF3F34'> "+FlexGlobals.topLevelApplication.logonMsgLso.data.logonMsgLso + " </font></b>";
+				}
+				else
+				{
+					FlexGlobals.topLevelApplication.logonMsgLso.data.logonMsgLso = "";										
+				}
+			}
+			
+			private function remoteCall():void
+			{ 
+				var usrMgmtGateway:RemoteObject = RemoteGateway.getInstance().getUsrMgmtGateway();
+				usrMgmtGateway.addEventListener(ResultEvent.RESULT, loginSuccess);
+				
+				var userObject:UserObject = FlexGlobals.topLevelApplication.userObject;
+				
+				userObject.userName = userNameTextField.text;
+				userObject.password = passwordTextField.text;
+				//				usrMgmtGateway.testConnection();
+				usrMgmtGateway.loginUser(userObject);				
+			}
+			
+			private function loginSuccess(event:ResultEvent):void
+			{
+				PrPreloader.getInstance().hidePreloader();
+				
+				var userObject:UserObject = event.result as UserObject;
+				var status:String = userObject.status;
+				var sessionId:String = userObject.sessionId;
+				if(status == FrameworkConstants.FAILURE)
+				{
+					PrAlert.show(userObject.statusMsg,FrameworkConstants.hashOfAlertTypes.getValue(FrameworkConstants.SUCCESS));
+				}
+				else
+				{
+					if(sessionId != null  )
+					{
+						// TODO Get from user table
+						FlexGlobals.topLevelApplication.autoLogoutTime = 30; //parseInt(userObject.dataObject["autoLogoutTime"]);
+//						FlexGlobals.topLevelApplication.domainObject = userObject.domainObject;
+//						userObject.domainObject = null;
+						
+						// Initialize privilegeHash in UserPrivilege.getInstance() and Empty privilegeHash in UserObject 
+//						var privhash:HashMap = UserPrivilege.getInstance().privilegeHash;
+//						var privObj:ArrayCollection = userObject.privilegeList;
+//						for each(var privilege:Object in privObj)
+//						{
+//							privhash.put(privilege["activity_id"], privilege["operation"]);
+//						}
+//						userObject.privilegeList = null;
+						
+						FlexGlobals.topLevelApplication.userObject = userObject;
+						//					FlexGlobals.topLevelApplication.userObject.sessionId = sessionId;	
+						FlexGlobals.topLevelApplication.mainModuleContainer.setStyle("horizontalAlign","left");
+						FlexGlobals.topLevelApplication.mainModuleContainer.setStyle("verticalAlign","middle");
+						
+						//Set timeout
+						TimeOutService.getInstance().MAX_IDLE_TIME = FlexGlobals.topLevelApplication.autoLogoutTime;
+						
+						TimeOutService.getInstance().startTimeOut();
+						var urlStr:String = FlexGlobals.topLevelApplication.url;
+						urlStr = urlStr.substr(0,urlStr.indexOf('?')); 
+						ModuleMgr.getInstance().loadModule(FlexGlobals.topLevelApplication.mainModuleContainer, ModuleContants.DASHBOARD_MODULE);
+					}
+					else
+					{
+						Alert.show(userObject.dataObject + "");
+					}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Label text="asd" />
+</container:PrModule>

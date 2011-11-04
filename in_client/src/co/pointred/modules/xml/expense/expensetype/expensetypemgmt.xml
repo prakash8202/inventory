@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>expensetypemgmt.grid</uid>
+	<title>expensetype Management</title>
+	<type>skinnablecontainer</type>
+	<width>50</width>
+	<height>50</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='expensetypeGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='expensetypeMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>expensetypeList</attrname>
+				<label>expensetype</label>
+				<sql>SELECT expense_type_pid, expense_type FROM expensetype ORDER BY expense_type</sql>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>expense_type_pid</colname>
+					<attrname>expense_type_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Expense Type</colname>
+					<attrname>expense_type</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

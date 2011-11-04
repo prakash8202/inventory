@@ -1,0 +1,81 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace components "com.ems.fx.comp.tab.test.components.*";
+@namespace core "com.pr.fx.comp.core.*";
+
+
+@font-face{
+	src: url("assets/fonts/DS-DIGI.TTF");
+	fontFamily: "Base02";
+	embed-as-cff: true;
+}
+
+@font-face{
+	src: url("assets/fonts/VERDANA.TTF");
+	fontFamily: "Verdana_pr";
+	embed-as-cff: true;
+}
+
+global
+{
+	/*For header bg color*/
+	chrome-color: #94927b;
+	color: #3E4549;
+	content-background-color: #F4F4F2;
+	content-background-alpha: 1.0;
+	roll-over-color: #f3ce89;
+	selection-color: #f5bc50;	color: #000000;
+}
+
+
+mx|DataGrid
+{
+	alternating-item-colors: #F4F4F2, #ffffff;
+	selectionColor: #f5bc50;
+	color: #000000;
+	drop-shadow-visible:false;
+	font-size : 11;
+}
+
+mx|FormItem
+{
+	label-style-name: labelStyle;
+}
+
+.labelStyle
+{
+	textAlign: left;
+}
+
+
+/*mx|TitleWindow
+{
+	title-style-name:titleWindowtitleStyle
+}
+
+.titleWindowtitleStyle
+{
+	color: #ffffff;
+}*/
+
+#contentContainer{
+	background-color:#F4F4F2;
+	content-background-color:#F4F4F2;
+}
+
+#slider {
+	thumbSkin: Embed(source="assets/misc/slider_handle.png");
+	dataTipPlacement: right;
+	dataTipOffset: 0;
+}
+
+core|PrTextField:disabled
+{
+	content-background-color:#FFE06E;
+}
+
+s|TextInput:disabled
+{
+	content-background-color:#FFE06E;
+}

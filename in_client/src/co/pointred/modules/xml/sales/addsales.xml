@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>sales.create</uid>
+	<title>Add/Modify sales</title>
+	<type>skinnablecontainer</type>
+	<width>25</width>
+	<height>31</height>
+	<layout>vertical</layout>
+
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='salesForm' type='' label='' layout='form' tabgroup='' colgroup=''>
+			<icomp type='nullcomp'>
+				<attrname>sales_pid</attrname>
+				<label>PID</label>
+			</icomp>
+			<icomp type='combobox'>
+				<attrname>product_id</attrname>
+				<label>Product</label>
+				<width>150</width>
+				<tooltip>Select Product</tooltip>
+				<required>true</required>
+			</icomp>
+			<icomp type='label'>
+				<attrname>customer_id</attrname>
+				<label>Customer</label>
+				<width>150</width>
+				<tooltip>Customer</tooltip>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>sales_date</attrname>
+				<label>Sales Date</label>
+				<required>true</required>
+				<tooltip>Enter Sales Date</tooltip>
+				<before></before>
+				<after>-1</after>
+			</icomp>
+			<icomp type='label'>
+				<attrname>available_quantity</attrname>
+				<label>Available Quantity</label>
+				<tooltip>Available Quantity</tooltip>
+				<labelbold>false</labelbold>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>quantity</attrname>
+				<label>Sales Quantity</label>
+				<required>true</required>
+				<tooltip>Sales Quantity</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='label'>
+				<attrname>rate</attrname>
+				<label>Product Rate (INR)</label>
+				<tooltip>Product Rate</tooltip>
+				<labelbold>false</labelbold>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>price</attrname>
+				<label>Sales Price (INR)</label>
+				<tooltip>Sales Price</tooltip>
+				<required>true</required>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+		<components id='CategoryCrudBtns' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='button'>
+				<attrname>save_btn</attrname>
+				<label>Save</label>
+				<tooltip>Save</tooltip>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

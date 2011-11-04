@@ -1,0 +1,21 @@
+<s:ItemRenderer
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="hovered"/>
+		<s:State name="selected" />
+	</s:states>
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<s:HGroup verticalAlign="middle" paddingTop="2" paddingBottom="2">
+		<mx:Image source="@Embed(source='assets/alert/warning18.png')" alpha.hovered=".5" />
+		<s:Label text="{data}" color.normal="0xB02F2F" color.hovered="0x1313cd" color.selected="0x000000" verticalAlign="bottom" paddingTop="2"/>
+	</s:HGroup>
+	
+</s:ItemRenderer>

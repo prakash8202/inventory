@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="sales">
+
+	<parameterMap id="pMapSales" class="java.util.HashMap">
+		<parameter property="sales_pid" jdbcType="BIGINT" />
+		<parameter property="product_id" jdbcType="BIGINT" />
+		<parameter property="customer_id" jdbcType="BIGINT" />
+		<parameter property="sales_date" jdbcType="DATETIME" />
+		<parameter property="price" jdbcType="STRING" />
+		<parameter property="quantity" jdbcType="STRING" />
+	</parameterMap>
+	
+	<insert id="SALES.CREATE" parameterMap="pMapSales">
+		INSERT INTO sales (sales_pid,product_id,customer_id,sales_date,price,quantity) values (?,?,?,?,?,?)
+	</insert>
+	
+	<insert id="SALES.CREATE_OBJECT" parameterClass="Sales">
+		INSERT INTO sales (sales_pid,product_id,customer_id,sales_date,price,quantity) values(#sales_pid#,#product_id#,#customer_id#,#sales_date#,#price#,#quantity#)
+	</insert>
+	
+	<select id="SALES.SELECT.ALL" resultClass="Sales">
+		SELECT * FROM sales
+	</select>
+	
+	<select id="SALES.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="Sales">
+		SELECT * FROM sales WHERE sales_pid = #sales_pid#
+	</select>
+	
+	<select id="SALES.SELECT.BY_PRODUCT_ID" parameterClass="java.lang.Long" resultClass="Sales">
+		SELECT * FROM sales WHERE product_id = #product_id#
+	</select>
+	
+	<select id="SALES.SELECT.BY_CUSTOMER_ID" parameterClass="java.lang.Long" resultClass="Sales">
+		SELECT * FROM sales WHERE customer_id = #customer_id#
+	</select>
+	
+	<select id="SALES.QUANTITY.BY_PRODUCT_ID" parameterClass="java.lang.Long" resultClass="java.util.HashMap">
+		SELECT SUM(quantity) as sold FROM sales WHERE product_id = #product_id#
+	</select>
+	
+	<select id="SALES.TOTAL_AMOUNT" resultClass="java.util.HashMap">
+		SELECT SUM(quantity * price) as total_sales FROM sales
+	</select>
+	
+	<delete id="SALES.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM sales WHERE sales_pid = #sales_pid#
+	</delete>
+	
+	<update id="SALES.UPDATE" parameterClass="Sales">
+		UPDATE sales SET product_id=#product_id#,customer_id=#customer_id#,sales_date=#sales_date#,price=#price#,quantity=#quantity# WHERE sales_pid = #sales_pid#
+	</update>
+</sqlMap>

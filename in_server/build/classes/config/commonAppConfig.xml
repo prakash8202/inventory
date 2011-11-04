@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Bean Definitions For File Path Operations -->
+
+
+	<bean id="configPath" class="co.pointred.core.config.ConfigPath">
+		<property name="defaultMenuXml" value="classpath:config/menu/DefaultMenuXml.xml" />
+		<property name="masterDataFile" value="file:sql_script/masterdata.sql" />
+		<property name="treeCtxMenuXmlHash">
+			<map>
+				<entry key="haMenuXml" value="classpath:config/menu/tree/haMenuXml.xml" />
+				<entry key="asnMenuXml" value="classpath:config/menu/tree/asnMenuXml.xml" />
+				<entry key="cellMenuXml" value="classpath:config/menu/tree/cellMenuXml.xml" />
+				<entry key="chassisMenuXml" value="classpath:config/menu/tree/chassisMenuXml.xml" />
+				<entry key="btsMenuXml" value="classpath:config/menu/tree/btsMenuXml.xml" />
+			</map>
+		</property>
+		<property name="privilegeFiles">
+			<list>
+				<value>classpath:config/privilege/mainmenu.properties</value>
+				<value>classpath:config/privilege/haconfiguration.properties</value>
+				<value>classpath:config/privilege/btsconfiguration.properties</value>
+				<value>classpath:config/privilege/btsproperties.properties</value> 
+				<value>classpath:config/privilege/asnconfiguration.properties</value> 
+			</list>
+		</property>
+	</bean>
+</beans>

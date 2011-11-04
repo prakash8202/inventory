@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>productsummary.grid</uid>
+	<title>productsummary</title>
+	<type>skinnablecontainer</type>
+	<width>70</width>
+	<height>70</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='AddActivityFrm' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='combobox'>
+				<attrname>product_id</attrname>
+				<label>Product</label>
+				<width>150</width>
+				<tooltip>Select Product</tooltip>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>from_date</attrname>
+				<label>From</label>
+				<tooltip>From Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>to_date</attrname>
+				<label>To</label>
+				<tooltip>To Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='button'>
+				<attrname>clear_btn</attrname>
+				<label>Clear</label>
+				<tooltip>Clear Date Filter</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+	</pruicntnr>
+	<pruicntnr id='productsummaryGrid' layout='vertical' istab='false' ismulticolumn='false'>
+		<components id='productsummaryGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>purchasesummaryList</attrname>
+				<label>purchasesummary</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>true</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>Vendor Name</colname>
+					<attrname>vendor_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Items Purchased</colname>
+					<attrname>purchased</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Purchase Amount (INR)</colname>
+					<attrname>cost_price</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+			<icomp type='dataGrid'>
+				<attrname>salessummaryList</attrname>
+				<label>salessummary</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>true</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>Customer Name</colname>
+					<attrname>customer_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Items Sold</colname>
+					<attrname>sold</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Sales Amount (INR)</colname>
+					<attrname>sold_price</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

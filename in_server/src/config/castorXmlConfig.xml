@@ -1,0 +1,28 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Bean Definitions For Castor XML Parser -->
+	<bean id="castorGenerator" class="co.pointred.core.utils.CastorXmlUtil">
+		<property name="marshaller" ref="castorMarshaller" />
+		<property name="unmarshaller" ref="castorMarshaller" />
+	</bean>
+	<bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
+		<property name="mappingLocations">
+			<list>
+<!-- 				<value>classpath:config/menu/menuDef.xml</value> -->
+				<value>classpath:config/serverpush/serverpushDef.xml</value>
+			</list>
+		</property>
+		<!--
+			<property name="mappingLocation"
+			value="classpath:config/menu/menuDef.xml" />
+		-->
+	</bean>
+	<!--
+		Bean Definitions For File Path Operations <bean id="configPath"
+		class="com.pr.fx.utils.ConfigPath"> <property name="defaultMenuXml"
+		value="classpath:config/menu/DefaultMenuXml.xml"></property> </bean>
+	-->
+</beans>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service id="remoting-service" 
+    class="flex.messaging.services.RemotingService">
+
+    <adapters>
+        <adapter-definition id="java-object" class="flex.messaging.services.remoting.adapters.JavaAdapter" default="true"/>
+    </adapters>
+
+    <default-channels>
+        <channel ref="my-amf"/>
+    </default-channels>
+    
+     <destination id="TestGateway">
+		<properties>
+			<source>com.pr.fx.gateway.TestGateway</source>
+		</properties>
+	</destination>
+	
+	 <destination id="CrudGateway">
+		<properties>
+			<source>co.pointred.fx.gateway.CrudGateway</source>
+		</properties>
+	</destination>
+	
+	<destination id="ProductManagementGateway">
+		<properties>
+			<source>co.pointred.fx.gateway.ProductManagementGateway</source>
+		</properties>
+	</destination>
+	
+	<destination id="ExpenseManagementGateway">
+		<properties>
+			<source>co.pointred.fx.gateway.ExpenseManagementGateway</source>
+		</properties>
+	</destination>
+	
+	<destination id="PurchaseManagementGateway">
+		<properties>
+			<source>co.pointred.fx.gateway.PurchaseManagementGateway</source>
+		</properties>
+	</destination>
+	
+	<destination id="SalesManagementGateway">
+		<properties>
+			<source>co.pointred.fx.gateway.SalesManagementGateway</source>
+		</properties>
+	</destination>
+	
+	<destination id="ReportManagementGateway">
+		<properties>
+			<source>co.pointred.fx.gateway.ReportManagementGateway</source>
+		</properties>
+	</destination>
+	
+
+</service>

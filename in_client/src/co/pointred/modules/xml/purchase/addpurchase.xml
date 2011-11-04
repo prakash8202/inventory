@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>purchase.create</uid>
+	<title>Add/Modify purchase</title>
+	<type>skinnablecontainer</type>
+	<width>25</width>
+	<height>25</height>
+	<layout>vertical</layout>
+
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='purchaseForm' type='' label='' layout='form' tabgroup='' colgroup=''>
+			<icomp type='nullcomp'>
+				<attrname>purchase_pid</attrname>
+				<label>PID</label>
+			</icomp>
+			<icomp type='combobox'>
+				<attrname>product_id</attrname>
+				<label>Product</label>
+				<width>150</width>
+				<tooltip>Select Product</tooltip>
+				<required>true</required>
+			</icomp>
+			<icomp type='label'>
+				<attrname>vendor_id</attrname>
+				<label>Vendor</label>
+				<width>150</width>
+				<tooltip>Vendor</tooltip>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>purchase_date</attrname>
+				<label>Purchase Date</label>
+				<required>true</required>
+				<tooltip>Enter Purchase Date</tooltip>
+				<before></before>
+				<after>-1</after>
+			</icomp>
+			<icomp type='label'>
+				<attrname>cost</attrname>
+				<label>Product Cost (INR)</label>
+				<tooltip>Product Rate</tooltip>
+				<labelbold>false</labelbold>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>quantity</attrname>
+				<label>Purchase Quantity</label>
+				<required>true</required>
+				<tooltip>Purchase Quantity</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+		<components id='CategoryCrudBtns' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='button'>
+				<attrname>save_btn</attrname>
+				<label>Save</label>
+				<tooltip>Save</tooltip>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

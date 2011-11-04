@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for a Spark SkinnableContainer container.  
+
+     @see spark.components.SkinnableContainer
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" initialize="initializeCustomProperties()">
+    <fx:Metadata>[HostComponent("co.pointred.fx.comp.core.fieldset.PrFieldSet")]</fx:Metadata>
+
+    <fx:Script fb:purpose="styling">
+        <![CDATA[         
+            /**
+             *  @private
+             */
+			import spark.effects.interpolation.RGBInterpolator;
+
+			[Bindable]
+			private var groupBoxLabel:String="";
+	
+			[Bindable]
+			private var backGrdColor:uint;
+
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+			{
+				backGrdColor = getStyle("contentBackgroundColor");
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+			}
+
+			private function initializeCustomProperties() : void
+			{
+				if(hostComponent != null) {
+					groupBoxLabel = hostComponent.title;    
+				}
+			}
+        ]]>        
+    </fx:Script>
+    
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<!-- layer 1: Define a Rect to fill the area of the skin. -->
+	
+	<s:Rect radiusX="3" radiusY="3" left="0" right="0.5" top="5" bottom="0.5">
+		<s:stroke>
+			<s:LinearGradientStroke weight="1"/>
+		</s:stroke>
+	</s:Rect>
+	
+	<!-- layer 2: fill Back Ground Gradient-->
+	<s:Rect left="1" right="1" top="6" bottom="1.5" radiusX="3" radiusY="3">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0xFFFFFF" />
+				<s:GradientEntry color="0xEFEFEF" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<s:SkinnableContainer width="{titleDisplay.width != 0 ? (titleDisplay.width + 8) : 0}" height="{titleDisplay.height}" left="14" top="0" backgroundAlpha="0.95"  backgroundColor="{backGrdColor}" textAlign="center"/>
+	<s:Label id="titleDisplay" text="{groupBoxLabel}"  left="18" top="0"  fontStyle="italic" fontWeight="bold">
+	</s:Label>
+	
+	<!-- <s:Label id="gbLabel" text="{groupBoxLabel}" left="18" top="0"  fontStyle="italic" fontWeight="bold"/>
+    -->
+    <!--
+        Note: setting the minimum size to 0 here so that changes to the host component's
+        size will not be thwarted by this skin part's minimum size.   This is a compromise,
+        more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
+    -->
+    <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+	<!-- Define the content area of the container. -->
+	<s:Group id="contentGroup" left="5" right="5" top="25" bottom="5" minWidth="0" minHeight="0">
+		<s:layout>
+			<s:BasicLayout/>
+		</s:layout>
+	</s:Group>
+
+</s:Skin>

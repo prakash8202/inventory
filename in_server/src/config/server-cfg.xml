@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<import resource="quartz-config.xml"/>
+	<!--Bean to load properties file -->
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:/config/projectconfig.properties" />  <!--reads config.properties file-->
+	</bean>
+
+	<bean id="serverConfig" class="co.pointred.core.config.ProjectConfig">
+		<!--reference values read by PropertyPlaceholderConfigurer bean-->
+		<property name="serverType" value="${serverType}" />
+		<property name="primaryServerIp" value="${primaryServerIp}" />
+		<property name="secondaryServerIp" value="${secondaryServerIp}" />
+		<property name="applicationServerIp" value="${serverType}" />
+		<property name="sqlBackupDir" value="classpath:config/sqlbackup" />
+		<property name="eventLogger" value="${eventLogger}" />
+	</bean>
+	
+</beans>

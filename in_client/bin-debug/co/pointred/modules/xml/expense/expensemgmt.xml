@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>expensemgmt.grid</uid>
+	<title>expense Management</title>
+	<type>skinnablecontainer</type>
+	<width>50</width>
+	<height>50</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='AddActivityFrm' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='combobox'>
+				<attrname>expense_type_id</attrname>
+				<label>Expense Type</label>
+				<width>150</width>
+				<tooltip>Select Expense Type</tooltip>
+				<required>true</required>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>from_date</attrname>
+				<label>From</label>
+				<tooltip>From Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>to_date</attrname>
+				<label>To</label>
+				<tooltip>To Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='button'>
+				<attrname>clear_btn</attrname>
+				<label>Clear</label>
+				<tooltip>Clear Date Filter</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+	</pruicntnr>
+	<pruicntnr id='expenseGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='expenseMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>expenseList</attrname>
+				<label>expense</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>14</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>expense_pid</colname>
+					<attrname>expense_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Expense Date</colname>
+					<attrname>expense_date</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Amount (INR)</colname>
+					<attrname>amount</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

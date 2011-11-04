@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>salesmgmt.grid</uid>
+	<title>sales Management</title>
+	<type>skinnablecontainer</type>
+	<width>100</width>
+	<height>100</height>
+	<layout>vertical</layout>
+	
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='AddActivityFrm' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='combobox'>
+				<attrname>product_id</attrname>
+				<label>Product</label>
+				<width>150</width>
+				<tooltip>Select Product</tooltip>
+			</icomp>
+			<icomp type='combobox'>
+				<attrname>customer_id</attrname>
+				<label>Customer</label>
+				<width>150</width>
+				<tooltip>Select Customer</tooltip>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>from_date</attrname>
+				<label>From</label>
+				<tooltip>From Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>to_date</attrname>
+				<label>To</label>
+				<tooltip>To Date</tooltip>
+				<before></before>
+				<after>-1</after>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='button'>
+				<attrname>clear_btn</attrname>
+				<label>Clear</label>
+				<tooltip>Clear Date Filter</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+	</pruicntnr>
+	<pruicntnr id='salesGrid' layout='horizontal' istab='false' ismulticolumn='false'>
+		<components id='salesMgmtGrd' type='' label='' layout='vertical' tabgroup='' colgroup=''>
+			<icomp type='dataGrid'>
+				<attrname>salesList</attrname>
+				<label>sales</label>
+				<dbType>0</dbType>
+				<width>100</width>
+				<height>100</height>
+				<bucketsize>25</bucketsize>
+				<controls>
+					<hidebar>false</hidebar>
+					<datacontrol>false</datacontrol>
+					<navcontrol>false</navcontrol>
+					<refresh>false</refresh>
+					<filtercontrol>true</filtercontrol>
+				</controls>
+				<column>
+					<colname>sales_pid</colname>
+					<attrname>sales_pid</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>customer_id</colname>
+					<attrname>customer_id</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>product_id</colname>
+					<attrname>product_id</attrname>
+					<hide>true</hide>
+				</column>
+				<column>
+					<colname>Product Name</colname>
+					<attrname>product_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Product Type</colname>
+					<attrname>product_type</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Customer</colname>
+					<attrname>customer_name</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Sales Date</colname>
+					<attrname>sales_date</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Price (INR)</colname>
+					<attrname>price</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>Quantity</colname>
+					<attrname>quantity</attrname>
+					<colwidth>150</colwidth>
+					<hide>false</hide>
+				</column>
+				<column>
+					<colname>sales_date_val</colname>
+					<attrname>sales_date_val</attrname>
+					<hide>true</hide>
+				</column>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

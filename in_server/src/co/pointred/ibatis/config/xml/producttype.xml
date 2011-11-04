@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="producttype">
+
+	<parameterMap id="pMapProductType" class="java.util.HashMap">
+		<parameter property="product_type_pid" jdbcType="BIGINT" />
+		<parameter property="product_type" jdbcType="STRING" />
+	</parameterMap>
+	
+	<insert id="PRODUCT_TYPE.CREATE" parameterMap="pMapProductType">
+		INSERT INTO producttype (product_type_pid,product_type) values (?,?)
+	</insert>
+	
+	<insert id="PRODUCT_TYPE.CREATE_OBJECT" parameterClass="ProductType">
+		INSERT INTO producttype (product_type_pid,product_type) values(#product_type_pid#,#product_type#)
+	</insert>
+	
+	<select id="PRODUCT_TYPE.SELECT.ALL" resultClass="ProductType">
+		SELECT * FROM producttype
+	</select>
+	
+	<select id="PRODUCT_TYPE.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="ProductType">
+		SELECT * FROM producttype WHERE product_type_pid = #product_type_pid#
+	</select>
+	
+	<select id="PRODUCT_TYPE.SELECT.BY_NAME" parameterClass="string" resultClass="ProductType">
+		SELECT * FROM producttype WHERE product_type = #product_type#
+	</select>
+	
+	<delete id="PRODUCT_TYPE.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM producttype WHERE product_type_pid = #product_type_pid#
+	</delete>
+	
+	<update id="PRODUCT_TYPE.UPDATE" parameterClass="ProductType">
+		UPDATE producttype SET product_type=#product_type# WHERE product_type_pid = #product_type_pid#
+	</update>
+</sqlMap>

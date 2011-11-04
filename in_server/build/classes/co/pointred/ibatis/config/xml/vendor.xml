@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="vendor">
+
+	<parameterMap id="pMapVendor" class="java.util.HashMap">
+		<parameter property="vendor_pid" jdbcType="BIGINT" />
+		<parameter property="vendor_name" jdbcType="STRING" />
+		<parameter property="vendor_addr" jdbcType="STRING" />
+		<parameter property="vendor_number" jdbcType="STRING" />
+	</parameterMap>
+	
+	<insert id="VENDOR.CREATE" parameterMap="pMapVendor">
+		INSERT INTO vendor (vendor_pid,vendor_name,vendor_addr,vendor_number) values (?,?,?,?)
+	</insert>
+	
+	<insert id="VENDOR.CREATE_OBJECT" parameterClass="Vendor">
+		INSERT INTO vendor (vendor_pid,vendor_name,vendor_addr,vendor_number) values(#vendor_pid#,#vendor_name#,#vendor_addr#,#vendor_number#)
+	</insert>
+	
+	<select id="VENDOR.SELECT.ALL" resultClass="Vendor">
+		SELECT * FROM vendor
+	</select>
+	
+	<select id="VENDOR.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="Vendor">
+		SELECT * FROM vendor WHERE vendor_pid = #vendor_pid#
+	</select>
+	
+	<select id="VENDOR.SELECT.BY_NAME" parameterClass="string" resultClass="Vendor">
+		SELECT * FROM vendor WHERE vendor_name = #vendor_name#
+	</select>
+	
+	<delete id="VENDOR.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM vendor WHERE vendor_pid = #vendor_pid#
+	</delete>
+	
+	<update id="VENDOR.UPDATE" parameterClass="Vendor">
+		UPDATE vendor SET vendor_name=#vendor_name#,vendor_addr=#vendor_addr#,vendor_number=#vendor_number# WHERE vendor_pid = #vendor_pid#
+	</update>
+</sqlMap>

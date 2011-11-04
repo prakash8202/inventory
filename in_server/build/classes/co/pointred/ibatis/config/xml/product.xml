@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="product">
+
+	<parameterMap id="pMapProduct" class="java.util.HashMap">
+		<parameter property="product_pid" jdbcType="BIGINT" />
+		<parameter property="product_type_id" jdbcType="BIGINT" />
+		<parameter property="product_name" jdbcType="STRING" />
+		<parameter property="rate" jdbcType="STRING" />
+		<parameter property="available" jdbcType="INT" />
+		<parameter property="start_date" jdbcType="DATETIME" />
+	</parameterMap>
+	
+	<insert id="PRODUCT.CREATE" parameterMap="pMapProduct">
+		INSERT INTO product (product_pid,product_type_id,product_name,rate,available,start_date) values (?,?,?,?,?,?)
+	</insert>
+	
+	<insert id="PRODUCT.CREATE_OBJECT" parameterClass="Product">
+		INSERT INTO product (product_pid,product_type_id,product_name,rate,available,start_date) values(#product_pid#,#product_type_id#,#product_name#,#rate#,#available#,#start_date#)
+	</insert>
+	
+	<select id="PRODUCT.SELECT.ALL" resultClass="Product">
+		SELECT * FROM product
+	</select>
+	
+	<select id="PRODUCT.SELECT.AVAILABLE" resultClass="Product">
+		SELECT * FROM product WHERE available != 0
+	</select>
+	
+	<select id="PRODUCT.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="Product">
+		SELECT * FROM product WHERE product_pid = #product_pid#
+	</select>
+	
+	<select id="PRODUCT.SELECT.BY_TYPE_ID" parameterClass="java.lang.Long" resultClass="Product">
+		SELECT * FROM product WHERE product_type_id = #product_type_id#
+	</select>
+	
+	<select id="PRODUCT.SELECT.BY_NAME" parameterClass="string" resultClass="Product">
+		SELECT * FROM product WHERE product_name = #product_name#
+	</select>
+	
+	<select id="PRODUCT.SELECT.AVAILABLE.BY_ID" parameterClass="java.lang.Long" resultClass="String">
+		SELECT available FROM product WHERE product_pid = #product_pid#
+	</select>
+	
+	<delete id="PRODUCT.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM product WHERE product_pid = #product_pid#
+	</delete>
+	
+	<update id="PRODUCT.UPDATE" parameterClass="Product">
+		UPDATE product SET product_type_id=#product_type_id#,product_name=#product_name#,rate=#rate#,available=#available#,start_date=#start_date# WHERE product_pid = #product_pid#
+	</update>
+</sqlMap>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>customer.create</uid>
+	<title>Add/Modify customer</title>
+	<type>skinnablecontainer</type>
+	<width>25</width>
+	<height>25</height>
+	<layout>vertical</layout>
+
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='customerForm' type='' label='' layout='form' tabgroup='' colgroup=''>
+			<icomp type='nullcomp'>
+				<attrname>customer_pid</attrname>
+				<label>PID</label>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>customer_name</attrname>
+				<label>Customer Name</label>
+				<tooltip>Customer Name</tooltip>
+				<enabled>false</enabled>
+				<required>true</required>
+			</icomp>
+			<icomp type='textarea'>
+				<attrname>customer_addr</attrname>
+				<label>Address</label>
+				<tooltip>Customer Address</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>customer_number</attrname>
+				<label>Phone Number</label>
+				<tooltip>Phone Number</tooltip>
+				<restrict>0-9</restrict>
+				<enabled>false</enabled>
+			</icomp>
+		</components>
+		<components id='CategoryCrudBtns' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='button'>
+				<attrname>save_btn</attrname>
+				<label>Save</label>
+				<tooltip>Save</tooltip>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

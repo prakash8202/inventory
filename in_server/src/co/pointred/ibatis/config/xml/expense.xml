@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="expense">
+
+	<parameterMap id="pMapExpense" class="java.util.HashMap">
+		<parameter property="expense_pid" jdbcType="BIGINT" />
+		<parameter property="expense_type_id" jdbcType="BIGINT" />
+		<parameter property="expense_date" jdbcType="DATETIME" />
+		<parameter property="amount" jdbcType="STRING" />
+	</parameterMap>
+	
+	<insert id="EXPENSE.CREATE" parameterMap="pMapExpense">
+		INSERT INTO expense (expense_pid,expense_type_id,expense_date,amount) values (?,?,?,?)
+	</insert>
+	
+	<insert id="EXPENSE.CREATE_OBJECT" parameterClass="Expense">
+		INSERT INTO expense (expense_pid,expense_type_id,expense_date,amount) values(#expense_pid#,#expense_type_id#,#expense_date#,#amount#)
+	</insert>
+	
+	<select id="EXPENSE.SELECT.ALL" resultClass="Expense">
+		SELECT * FROM expense
+	</select>
+	
+	<select id="EXPENSE.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="Expense">
+		SELECT * FROM expense WHERE expense_pid = #expense_pid#
+	</select>
+	
+	<select id="EXPENSE.SELECT.BY_TYPE_ID" parameterClass="java.lang.Long" resultClass="Expense">
+		SELECT * FROM expense WHERE expense_type_id = #expense_type_id#
+	</select>
+
+	<select id="EXPENSE.TOTAL_AMOUNT" resultClass="java.util.HashMap">
+		SELECT SUM(amount) as total_expense FROM expense
+	</select>
+	
+	<delete id="EXPENSE.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM expense WHERE expense_pid = #expense_pid#
+	</delete>
+	
+	<update id="EXPENSE.UPDATE" parameterClass="Expense">
+		UPDATE expense SET expense_type_id=#expense_type_id#,expense_date=#expense_date#,amount=#amount# WHERE expense_pid = #expense_pid#
+	</update>
+</sqlMap>

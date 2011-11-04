@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui>
+	<uid>product.create</uid>
+	<title>Add/Modify product</title>
+	<type>skinnablecontainer</type>
+	<width>20</width>
+	<height>20</height>
+	<layout>vertical</layout>
+
+	<pruicntnr id='formContainer' layout='form' istab='false' ismulticolumn='false'>
+		<components id='ProducttypeForm' type='' label='' layout='form' tabgroup='' colgroup=''>
+			<icomp type='nullcomp'>
+				<attrname>product_pid</attrname>
+				<label>PID</label>
+			</icomp>
+			<icomp type='label'>
+				<attrname>product_type_lbl</attrname>
+				<label>Product Type</label>
+				<labelbold>false</labelbold>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>product_name</attrname>
+				<label>Product Name</label>
+				<required>true</required>
+				<tooltip>Product Name</tooltip>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='textfield'>
+				<attrname>rate</attrname>
+				<label>Product Rate (INR)</label>
+				<required>true</required>
+				<tooltip>Product Rate</tooltip>
+				<restrict>0-9.</restrict>
+				<enabled>false</enabled>
+			</icomp>
+			<icomp type='datefield'>
+				<attrname>start_date</attrname>
+				<label>Start Date</label>
+				<required>true</required>
+				<tooltip>Enter Start Date</tooltip>
+				<before></before>
+				<after>-1</after>
+			</icomp>
+		</components>
+		<components id='CategoryCrudBtns' type='' label='' layout='horizontal' tabgroup='' colgroup=''>
+			<icomp type='button'>
+				<attrname>save_btn</attrname>
+				<label>Save</label>
+				<tooltip>Save</tooltip>
+			</icomp>
+		</components>
+	</pruicntnr>
+</ui>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" showStatusBar="false" creationComplete="windowedapplication1_creationCompleteHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import co.inventory.utils.SharedConstants;
+			import co.pointred.fx.comp.container.PrBorderContainer;
+			import co.pointred.fx.comp.container.PrModule;
+			import co.pointred.fx.comp.container.PrPanel;
+			import co.pointred.fx.comp.container.PrSkinnableContainer;
+			import co.pointred.fx.comp.container.PrTitleWindow;
+			import co.pointred.fx.comp.core.PrChkBox;
+			import co.pointred.fx.comp.core.PrComboBox;
+			import co.pointred.fx.comp.core.PrDateField;
+			import co.pointred.fx.comp.core.PrTextArea;
+			import co.pointred.fx.comp.core.dataGrid.PrDataGrid;
+			import co.pointred.fx.comp.utils.StringUtils;
+			import co.pointred.fx.dataobjects.UserObject;
+			import co.pointred.fx.rpc.RemoteGateway;
+			import co.pointred.fx.util.ModuleMgr;
+			import co.pointred.modules.ModuleContants;
+			
+			import flashx.textLayout.container.TextContainerManager;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.HistoryManager;
+			import mx.managers.PopUpManager;
+			import mx.modules.ModuleManager;
+			
+			import spark.components.BorderContainer;
+			import spark.components.RadioButton;
+			
+			public var currentModule:PrModule;
+			public var autoLogoutTime:Number;
+			
+			public var serverIp:String = "localhost";
+			private var _historyManager:HistoryManager; 
+			public var userObject:UserObject = new UserObject;
+			
+			protected function windowedapplication1_creationCompleteHandler(event:FlexEvent):void
+			{
+				initiateSingletonClasses();
+				initManagers();
+				this.nativeWindow.maximize();
+				RemoteGateway.getInstance().initiateChannelSettings(serverIp);
+
+				ModuleMgr.getInstance().loadModule(mainModuleContainer, ModuleContants.DASHBOARD_MODULE);
+				mainModuleContainer.setStyle("horizontalAlign","center");
+				mainModuleContainer.setStyle("verticalAlign","middle");
+			}
+			
+			private function initiateSingletonClasses():void
+			{
+				RemoteGateway.getInstance();
+				SharedConstants.getInstance();
+				ModuleContants.getInstance();
+				ModuleMgr.getInstance();
+			}
+			
+			private function initManagers():void
+			{
+				new StringUtils();
+				new PrPanel();
+				new PrSkinnableContainer();
+				new PrTitleWindow();
+				new PrBorderContainer();
+				new TextContainerManager(new Sprite());
+				new PopUpManager();
+				new RadioButton();
+				new BorderContainer();
+				new PrTextArea();
+				new PrComboBox();
+				new PrChkBox();
+				new PrDateField(<icomp type='datefield'></icomp>);
+				new PrDataGrid();
+			}
+
+		]]>
+	</fx:Script>
+	<fx:Style source="assets/css/default_css.css" /> 
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<mx:ModuleLoader id="mainModuleContainer" height="100%" width="100%" />
+</s:WindowedApplication>

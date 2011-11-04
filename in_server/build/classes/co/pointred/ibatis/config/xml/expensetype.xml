@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="expensetype">
+
+	<parameterMap id="pMapExpenseType" class="java.util.HashMap">
+		<parameter property="expense_type_pid" jdbcType="BIGINT" />
+		<parameter property="expense_type" jdbcType="STRING" />
+	</parameterMap>
+	
+	<insert id="EXPENSE_TYPE.CREATE" parameterMap="pMapExpenseType">
+		INSERT INTO expensetype (expense_type_pid,expense_type) values (?,?)
+	</insert>
+	
+	<insert id="EXPENSE_TYPE.CREATE_OBJECT" parameterClass="ExpenseType">
+		INSERT INTO expensetype (expense_type_pid,expense_type) values(#expense_type_pid#,#expense_type#)
+	</insert>
+	
+	<select id="EXPENSE_TYPE.SELECT.ALL" resultClass="ExpenseType">
+		SELECT * FROM expensetype
+	</select>
+	
+	<select id="EXPENSE_TYPE.SELECT.BY_ID" parameterClass="java.lang.Long" resultClass="ExpenseType">
+		SELECT * FROM expensetype WHERE expense_type_pid = #expense_type_pid#
+	</select>
+	
+	<select id="EXPENSE_TYPE.SELECT.BY_NAME" parameterClass="string" resultClass="ExpenseType">
+		SELECT * FROM expensetype WHERE expense_type = #expense_type#
+	</select>
+	
+	<delete id="EXPENSE_TYPE.DELETE" parameterClass="java.lang.Long">
+		DELETE FROM expensetype WHERE expense_type_pid = #expense_type_pid#
+	</delete>
+	
+	<update id="EXPENSE_TYPE.UPDATE" parameterClass="ExpenseType">
+		UPDATE expensetype SET expense_type=#expense_type# WHERE expense_type_pid = #expense_type_pid#
+	</update>
+</sqlMap>
